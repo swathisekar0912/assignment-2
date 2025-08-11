@@ -1,0 +1,145 @@
+SQL JOINS
+	create a database joins 
+	use joins
+
+-- Create Employee table
+CREATE TABLE employee (
+    e_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department_id INT
+);
+
+-- Insert data into Employee table
+INSERT INTO employee (e_id, first_name, last_name, department_id) VALUES
+(1, 'Amit', 'Gupta', 1),
+(2, 'Priya', 'Sharma', 2),
+(3, 'Rahul', 'Singh', 3),
+(4, 'Meera', 'Patel', 4),
+(5, 'Arjun', 'Kumar', 1),
+(6, 'Anjali', 'Deshpande', 2),
+(7, 'Vivek', 'Malhotra', 3),
+(8, 'Riya', 'Nair', NULL),
+(9, 'Suresh', 'Menon', NULL);
+
+-- Create Department table
+CREATE TABLE department (
+    department_id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+-- Insert data into Department table
+INSERT INTO department (department_id, name) VALUES
+(1, 'HR'),
+(2, 'Marketing'),
+(3, 'Finance'),
+(4, 'IT'),
+(5, 'Operations'),
+(6, 'Logistics');
+
+
+INNER JOIN
+	IDENTIFY  IDENTICAL COLUMNS AND COMPARE IF THE DATA IS SAME ON BOTH TABLE IT WILL DISPLAY
+		SELECT COLUMN_NAME 
+		FROM TABLE1 INNER JOIN TABLE2
+		ON TABLE1.COLUMN_NAME = TABLE2.COLUMN_NAME;
+		
+NATURAL JOIN
+	IDENTIFY  IDENTICAL COLUMNS AND COMPARE IF THE DATA IS SAME ON BOTH TABLE IT WILL DISPLAY
+	BUT KEEPS ONLY ONE IDENTICAL COLUMN
+
+		SELECT COLUMN_NAME
+		FROM TABLE1 NATURAL JOIN TABLE2;
+	
+OUTER JOIN 
+	-LEFT OUTER JOIN
+
+		SELECT COLUMN_NAME 
+		FROM TABLE1 LEFT JOIN TABLE2
+		ON TABLE1.COLUMN_NAME = TABLE2.COLUMN_NAME;
+
+	-RIGHT OUTER JOIN
+
+		SELECT COLUMN_NAME 
+		FROM TABLE1 RIGHT JOIN TABLE2
+		ON TABLE1.COLUMN_NAME = TABLE2.COLUMN_NAME;
+
+	-FULL OUTER JOIN
+
+		(SELECT COLUMN_NAME 
+		FROM TABLE1 LEFT JOIN TABLE2
+		ON TABLE1.COLUMN_NAME = TABLE2.COLUMN_NAME)
+		UNION
+		(SELECT COLUMN_NAME 
+		FROM TABLE1 RIGHT JOIN TABLE2
+		ON TABLE1.COLUMN_NAME = TABLE2.COLUMN_NAME);
+CROSS JOIN
+	IT WILL COMPARE EVERY ROW FROM ONE TABLE TO EVERY ROW IN ANOTHER TABLE.IT RETURNS ALL POSSIBLE COMBINATION.
+
+-- Create colour table
+CREATE TABLE colour (
+    id INT PRIMARY KEY,
+    color VARCHAR(20)
+);
+
+-- Insert sample data
+INSERT INTO colour (id, color) VALUES
+(1, 'Blue'),
+(2, 'Green'),
+(3, 'Red');
+
+-- Create product table
+CREATE TABLE product (
+    id INT PRIMARY KEY,
+    product VARCHAR(50)
+);
+
+-- Insert sample data
+INSERT INTO product (id, product) VALUES
+(1, 'Cap'),
+(2, 'Shirt'),
+(3, 'Pant');
+	
+	SELECT *
+	FROM TABLE1 CROSS JOIN TABLE2;
+	
+SELF JOIN
+	IT IS WAY JOIN A TABLE TO ITSELF.
+
+-- Create employee_manager table
+CREATE TABLE employee_manager (
+    eid INT PRIMARY KEY,   
+    name VARCHAR(50),     
+    mid INT                
+);
+
+-- Insert sample data
+INSERT INTO employee_manager (eid, name, mid) VALUES
+(1, 'Amit', 4),
+(2, 'Bhavana', 4),
+(3, 'Chetan', 5),
+(4, 'Farhan', NULL),  
+(5, 'Dinesh', NULL),  
+(6, 'Farhan', 5);
+
+
+	
+	SELECT COLUMN_NAME
+	FROM TABLE1 T1, TABLE1 T2
+	WHERE CONDITION;
+
+	
+	SELECT T1.name AS e1, T1.mid
+	FROM employee_manager T1, employee_manager T2
+	WHERE T1.eid <> T2.eid
+  	AND T1.mid = T2.mid;
+
+
+
+
+MATH FUNCTIONS 
+	MOD()
+	ROUND()
+	TRUNCATE()
+	CEIL()
+	FLOOR()
